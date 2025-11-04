@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Confounder &amp; Randomization Challenge</title>
+<title>Using Randomization &amp; Stratification to Overcome A Common Cause Confounder</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -131,8 +96,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Confounder &amp; Randomization Challenge</h1>
-<p class="subtitle lead">Recovering Lost Figures: Visualizing Confounders and Causal Inference</p>
+<h1 class="title">Using Randomization &amp; Stratification to Overcome A Common Cause Confounder</h1>
 </div>
 
 
@@ -149,41 +113,6 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>📋 The Challenge: Recover the Lost Figures!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A critical report on confounding and causal inference was being prepared when disaster struck—the figures were lost! The data files survived (<code>patients_data.csv</code> and <code>patients_data_randomized.csv</code>), and the narrative text is intact, but <strong>all three key visualizations have disappeared</strong>.</p>
-<p>Your mission: <strong>Recover the lost figures</strong> by reading the narrative carefully and creating compelling visualizations that match the story being told. The figures must be:</p>
-<ul>
-<li><strong>Figure 1</strong>: Post-surgical outcomes by patient (observational data)</li>
-<li><strong>Figure 2</strong>: Post-surgical outcomes for randomized patients<br>
-</li>
-<li><strong>Figure 3</strong>: Post-surgical outcomes by patient severity (stratification)</li>
-</ul>
-<p>Use the text descriptions, statistical results, and your understanding of visualization best practices to recreate these figures. Your figures should be professional, colorblind-friendly, and tell the story clearly.</p>
-<p><strong>Grading:</strong> Completing the three figures correctly will earn you 85% of the grade. To earn the final 15% (for a total of 100%), you must make it feel like a complete, professional report rather than a challenge assignment</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>⚠️ AI Partnership Required
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use Cursor AI for speed, but ensure you understand and can explain your visualizations in your own words. The goal is to create figures that match the narrative and statistical insights described in the text.</p>
-</div>
-</div>
 <section id="the-paradox-who-really-is-the-better-surgeon" class="level2">
 <h2 class="anchored" data-anchor-id="the-paradox-who-really-is-the-better-surgeon">The Paradox: Who <em>Really</em> Is the Better Surgeon?</h2>
 <div class="callout callout-style-default callout-tip no-icon callout-titled" title="A Tale of Two Surgeons">
@@ -207,19 +136,10 @@ window.Quarto = {
 </section>
 <section id="observational-data-a-misleading-victory-for-doc-dreamy" class="level2">
 <h2 class="anchored" data-anchor-id="observational-data-a-misleading-victory-for-doc-dreamy">Observational Data: A Misleading Victory for Doc Dreamy</h2>
-</section>
-<section id="r" class="level2">
-<h2 class="anchored" data-anchor-id="r">R</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the observational data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>patients_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'patients_data.csv'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display first few rows to understand the structure</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Number of patients:"</span>, <span class="fu">nrow</span>(patients_df), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Number of patients: 100 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(patients_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  patient   severity doctor_id doctor_name post_surgical_score
 1       1 -1.0856306         1  Doc Dreamy           2.6692782
@@ -230,77 +150,11 @@ window.Quarto = {
 6       6  1.6514365         1  Doc Dreamy           4.7734028</code></pre>
 </div>
 </div>
-<p>:::</p>
 <p>Let’s use data to figure out which surgeon performs better. <strong>?@fig-plot-outcomes</strong> shows the post-surgical symptom score for 100 patients. Doc Duck’s average post-surgical symptom score is 3.38 while Doc Dreamy’s average is 2.8. Doc Dreamy performs better since lower scores indicate better outcomes. One might ask if the difference in average post-surgical symptom score is statistically significant. A two-sample t-test reveals a statistically significant difference (t = -2.317, p = 0.023).</p>
-<section id="challenge-task-1-recover-figure-1-post-surgical-outcomes-by-patient" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-task-1-recover-figure-1-post-surgical-outcomes-by-patient">Challenge Task 1: Recover Figure 1 — Post-Surgical Outcomes by Patient</h3>
-<p><strong>Your task:</strong> Create a scatter plot showing post-surgical symptom scores by patient number, with different markers/colors for each doctor. The figure should include:</p>
-<ul>
-<li>Scatter points for each patient (Doc Dreamy: circles, Doc Duck: triangles)</li>
-<li>Horizontal dashed lines showing the mean for each doctor</li>
-<li>Text annotations showing the mean values with shape symbols (○ for Doc Dreamy, △ for Doc Duck)</li>
-<li>Colorblind-friendly colors (blue for Doc Dreamy, coral/red-orange for Doc Duck)</li>
-<li>Professional styling: clear labels, grid, legend, appropriate font sizes</li>
-<li>X-axis: Patient Number</li>
-<li>Y-axis: Post-Surgical Symptom Score (Lower is Better)</li>
-<li>Title: “Post-Surgical Symptom Score by Patient and Doctor”</li>
-</ul>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate means for each doctor</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mean_dreamy <span class="ot">&lt;-</span> <span class="fu">mean</span>(patients_df<span class="sc">$</span>post_surgical_score[patients_df<span class="sc">$</span>doctor_name <span class="sc">==</span> <span class="st">"Doc Dreamy"</span>])</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mean_duck <span class="ot">&lt;-</span> <span class="fu">mean</span>(patients_df<span class="sc">$</span>post_surgical_score[patients_df<span class="sc">$</span>doctor_name <span class="sc">==</span> <span class="st">"Doc Duck"</span>])</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(patients_df, <span class="fu">aes</span>(<span class="at">x =</span> patient, <span class="at">y =</span> post_surgical_score, </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> doctor_name, <span class="at">shape =</span> doctor_name)) <span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_dreamy, </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"#4E79A7"</span>) <span class="sc">+</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_duck, </span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"#E15759"</span>) <span class="sc">+</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">max</span>(patients_df<span class="sc">$</span>patient) <span class="sc">*</span> <span class="fl">0.95</span>, </span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean_dreamy <span class="sc">+</span> <span class="fl">0.15</span>, </span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"○ "</span>, <span class="fu">round</span>(mean_dreamy, <span class="dv">2</span>)), </span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"#4E79A7"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">max</span>(patients_df<span class="sc">$</span>patient) <span class="sc">*</span> <span class="fl">0.95</span>, </span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean_duck <span class="sc">+</span> <span class="fl">0.15</span>, </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"△ "</span>, <span class="fu">round</span>(mean_duck, <span class="dv">2</span>)), </span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"#E15759"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Doctor"</span>,</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="st">"#4E79A7"</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="st">"#E15759"</span>),</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="st">"Doc Dreamy (○)"</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="st">"Doc Duck (△)"</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Doctor"</span>,</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="dv">19</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="dv">17</span>),</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="st">"Doc Dreamy (○)"</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="st">"Doc Duck (△)"</span>)</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Post-Surgical Symptom Score by Patient and Doctor"</span>,</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Patient Number"</span>,</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Post-Surgical Symptom Score (Lower is Better)"</span>,</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Doctor"</span>,</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Doctor"</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>)</span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-plot-outcomes-r" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -314,10 +168,6 @@ Figure&nbsp;1: Post-Surgical Symptom Score (lower is better) - Observed Data
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="the-hidden-confounder-patient-severity-explains-it-all" class="level2">
 <h2 class="anchored" data-anchor-id="the-hidden-confounder-patient-severity-explains-it-all">The Hidden Confounder: Patient Severity Explains It All</h2>
@@ -392,20 +242,10 @@ Figure&nbsp;4: DAG Model Explaining Surgical Outcomes
 </div>
 <p>Unfortunately, we can’t observe what didn’t happen. The patients we already observed went to the surgeon they chose (or who was available), and we’ll never know their outcomes under the alternative assignment. This is the fundamental problem of causal inference: we only see one world, not the parallel universe where everything else was held constant but the treatment differed.</p>
 <p>Since we cannot rerun history with randomization, we run an experiment to collect the data we need. So, we randomly assigned a sequence of 100 patients to either Dr.&nbsp;Dreamy or Dr.&nbsp;Duck and observed the following data:</p>
-</section>
-</section>
-<section id="r-2" class="level2">
-<h2 class="anchored" data-anchor-id="r-2">R</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the randomized data</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>patients_randomized_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'patients_data_randomized.csv'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display first few rows</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Number of randomized patients:"</span>, <span class="fu">nrow</span>(patients_randomized_df), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Number of randomized patients: 100 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(patients_randomized_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  patient   severity doctor_id doctor_name post_surgical_score
 1       1 -0.6681285         1  Doc Dreamy            3.729393
@@ -416,69 +256,8 @@ Figure&nbsp;4: DAG Model Explaining Surgical Outcomes
 6       6  1.6295885         1  Doc Dreamy            6.915867</code></pre>
 </div>
 </div>
-<p>:::</p>
 <p><strong>?@fig-plot-outcomes-randomized</strong> shows the post-surgical symptom score for 100 patients under randomized assignment. Doc Duck’s average post-surgical symptom score is 2.71 while Doc Dreamy’s average is 3.46. Doc Duck performs better since lower scores indicate better outcomes. With randomization breaking the confounding relationship, we can now properly assess the causal effect. A two-sample t-test reveals a statistically significant difference (t = 2.734, p = 0.007). <strong>Not only is Dr.&nbsp;Dreamy not the better surgeon, he is actually the worse surgeon!</strong></p>
-<section id="challenge-task-2-recover-figure-2-randomized-assignment-outcomes" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-task-2-recover-figure-2-randomized-assignment-outcomes">Challenge Task 2: Recover Figure 2 — Randomized Assignment Outcomes</h3>
-<p><strong>Your task:</strong> Create a scatter plot similar to Figure 1, but for the randomized data. The figure should show how randomization breaks the confounding relationship. Include:</p>
-<ul>
-<li>Same styling as Figure 1 (markers, colors, mean lines, annotations)</li>
-<li>Title should indicate this is randomized assignment</li>
-<li>Same colorblind-friendly color scheme</li>
-<li>Professional styling consistent with Figure 1</li>
-</ul>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate means for each doctor in randomized data</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mean_dreamy_rand <span class="ot">&lt;-</span> <span class="fu">mean</span>(patients_randomized_df<span class="sc">$</span>post_surgical_score[patients_randomized_df<span class="sc">$</span>doctor_name <span class="sc">==</span> <span class="st">"Doc Dreamy"</span>])</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mean_duck_rand <span class="ot">&lt;-</span> <span class="fu">mean</span>(patients_randomized_df<span class="sc">$</span>post_surgical_score[patients_randomized_df<span class="sc">$</span>doctor_name <span class="sc">==</span> <span class="st">"Doc Duck"</span>])</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(patients_randomized_df, <span class="fu">aes</span>(<span class="at">x =</span> patient, <span class="at">y =</span> post_surgical_score, </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span> doctor_name, <span class="at">shape =</span> doctor_name)) <span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_dreamy_rand, </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"#4E79A7"</span>) <span class="sc">+</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_duck_rand, </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"#E15759"</span>) <span class="sc">+</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">max</span>(patients_randomized_df<span class="sc">$</span>patient) <span class="sc">*</span> <span class="fl">0.95</span>, </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean_dreamy_rand <span class="sc">+</span> <span class="fl">0.15</span>, </span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"○ "</span>, <span class="fu">round</span>(mean_dreamy_rand, <span class="dv">2</span>)), </span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"#4E79A7"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">max</span>(patients_randomized_df<span class="sc">$</span>patient) <span class="sc">*</span> <span class="fl">0.95</span>, </span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean_duck_rand <span class="sc">+</span> <span class="fl">0.15</span>, </span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"△ "</span>, <span class="fu">round</span>(mean_duck_rand, <span class="dv">2</span>)), </span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"#E15759"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Doctor"</span>,</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="st">"#4E79A7"</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="st">"#E15759"</span>),</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="st">"Doc Dreamy (○)"</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="st">"Doc Duck (△)"</span>)</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Doctor"</span>,</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="dv">19</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="dv">17</span>),</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="st">"Doc Dreamy (○)"</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="st">"Doc Duck (△)"</span>)</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Post-Surgical Symptom Score by Patient and Doctor (Randomized Assignment)"</span>,</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Patient Number"</span>,</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Post-Surgical Symptom Score (Lower is Better)"</span>,</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Doctor"</span>,</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Doctor"</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>)</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-plot-outcomes-randomized-r" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -492,82 +271,12 @@ Figure&nbsp;5: Post-Surgical Symptom Score (lower is better) for randomized pati
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
 </section>
 </section>
 <section id="solution-2-stratification-when-you-cant-randomize" class="level2">
 <h2 class="anchored" data-anchor-id="solution-2-stratification-when-you-cant-randomize">Solution 2: Stratification — When You Can’t Randomize</h2>
 <p>The key to handling a common cause confounder is to stratify by the common cause. In general, this means we examine the relationship between treatment and outcome within groups that share the same value of the confounder. In our example, this means we look at patients of similar severity and compare the outcomes of the surgeons for patients of similar severity. There are mathematically sophisticated ways to do this, but here we demonstrate it visually. Since patient number lacks inherent meaning, the following figure shows patient severity on the x-axis and post-surgical symptom score on the y-axis.</p>
-<section id="challenge-task-3-recover-figure-3-outcomes-by-patient-severity-stratification" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-task-3-recover-figure-3-outcomes-by-patient-severity-stratification">Challenge Task 3: Recover Figure 3 — Outcomes by Patient Severity (Stratification)</h3>
-<p><strong>Your task:</strong> Create a scatter plot showing post-surgical outcomes as a function of initial patient severity. This figure demonstrates the power of stratification. Include:</p>
-<ul>
-<li>X-axis: Initial Patient Severity</li>
-<li>Y-axis: Post-Surgical Symptom Score (Lower is Better)</li>
-<li>Scatter points colored/marked by doctor (same scheme as previous figures)</li>
-<li>Mean horizontal lines for each doctor</li>
-<li>A rectangular overlay (shaded region) highlighting severity between -1 and 1</li>
-<li>Text annotations for means positioned appropriately</li>
-<li>Title: “Post-Surgical Symptom Score by Patient Severity”</li>
-<li>This figure should reveal the confounding by showing how severity affects both surgeon assignment and outcomes</li>
-</ul>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate means for each doctor</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mean_dreamy_sev <span class="ot">&lt;-</span> <span class="fu">mean</span>(patients_df<span class="sc">$</span>post_surgical_score[patients_df<span class="sc">$</span>doctor_name <span class="sc">==</span> <span class="st">"Doc Dreamy"</span>])</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mean_duck_sev <span class="ot">&lt;-</span> <span class="fu">mean</span>(patients_df<span class="sc">$</span>post_surgical_score[patients_df<span class="sc">$</span>doctor_name <span class="sc">==</span> <span class="st">"Doc Duck"</span>])</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(patients_df, <span class="fu">aes</span>(<span class="at">x =</span> severity, <span class="at">y =</span> post_surgical_score, </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> doctor_name, <span class="at">shape =</span> doctor_name)) <span class="sc">+</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Shaded region from -1 to 1 on x-axis</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">xmax =</span> <span class="dv">1</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>, </span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">alpha =</span> <span class="fl">0.15</span>, <span class="at">fill =</span> <span class="st">"gray"</span>, <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_dreamy_sev, </span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"#4E79A7"</span>) <span class="sc">+</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_duck_sev, </span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"#E15759"</span>) <span class="sc">+</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">max</span>(patients_df<span class="sc">$</span>severity) <span class="sc">*</span> <span class="fl">0.9</span>, </span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean_dreamy_sev <span class="sc">+</span> <span class="fl">0.15</span>, </span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"○ "</span>, <span class="fu">round</span>(mean_dreamy_sev, <span class="dv">2</span>)), </span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"#4E79A7"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">max</span>(patients_df<span class="sc">$</span>severity) <span class="sc">*</span> <span class="fl">0.9</span>, </span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean_duck_sev <span class="sc">+</span> <span class="fl">0.15</span>, </span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"△ "</span>, <span class="fu">round</span>(mean_duck_sev, <span class="dv">2</span>)), </span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"#E15759"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Doctor"</span>,</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="st">"#4E79A7"</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="st">"#E15759"</span>),</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="st">"Doc Dreamy (○)"</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="st">"Doc Duck (△)"</span>)</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Doctor"</span>,</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="dv">19</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="dv">17</span>),</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Doc Dreamy"</span> <span class="ot">=</span> <span class="st">"Doc Dreamy (○)"</span>, <span class="st">"Doc Duck"</span> <span class="ot">=</span> <span class="st">"Doc Duck (△)"</span>)</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Post-Surgical Symptom Score by Patient Severity"</span>,</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Initial Patient Severity"</span>,</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Post-Surgical Symptom Score (Lower is Better)"</span>,</span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Doctor"</span>,</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Doctor"</span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>)</span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-plot-outcomes-severity-r" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -581,63 +290,17 @@ Figure&nbsp;6: Post-Surgical Symptom Score (lower is better) by Patient and Seve
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
 <p>Looking at <strong>?@fig-plot-outcomes-severity</strong>, the value of stratifying by severity is visually most obvious with initial patient severity scores between -1 and 1 (highlighted in the overlay). We chose this region because it shows substantial overlap between the two surgeons—both surgeons have considerable data within this range, making it an ideal region for comparing their performance. Outside of this range, there is less data available for making direct comparisons: Doc Duck sees more of the higher-severity patients (severity &gt; 1), while Doc Dreamy sees more of the lower-severity patients (severity &lt; -1).</p>
 <p>Within the highlighted region, Doc Dreamy’s blue circles tend to be higher (worse) than Doc Duck’s red triangles for these patients. It is also obvious that Doc Duck is seeing the more severe patients overall, as his red triangles are generally to the right of Doc Dreamy’s blue circles on the x-axis. This is exactly what we would expect if patient severity were a common cause of surgeon choice and surgical outcomes. Despite the aggregate statistics pointing to Doc Dreamy having lower (better) post-surgical symptom scores on average, our visual analysis of this overlapping region leads us to conclude that Doc Duck is actually the better surgeon—a conclusion that would be obscured if we only looked at the means without stratifying by severity.</p>
 </section>
-</section>
-<section id="how-to-solve-the-confounder-challenge" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-solve-the-confounder-challenge">How to Solve the Confounder Challenge</h2>
+<section id="conclusion-learning-from-confounding" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-learning-from-confounding">Conclusion: Learning from Confounding</h2>
 <p>Here’s the problem with graphs and statistics in general: the numbers can easily mislead you. Or rather, you can be misled <em>by</em> the numbers when you don’t understand what they’re really telling you.</p>
 <p>When you just look at the raw data and ask who had better outcomes, Doc Dreamy wins. Lower scores look great on paper. But here’s where it gets important: that association doesn’t mean what you think it means. Correlation is not causation, and we all know that, but we forget it every single time because our brains are wired to see patterns and assign causes.</p>
-<p>The real villain here is patient severity. It operates like a puppeteer behind the curtain, making Doc Dreamy look good by sending him easier cases while sending Doc Duck the harder ones. When you don’t randomize, you can’t tell the difference between “Doc Dreamy is a better surgeon” and “Doc Dreamy got lucky with his patient assignment.” On any graph or in any headline, look for the common-cause-confounder villian that is unaccounted for.</p>
+<p>The real villain here is patient severity. It operates like a puppeteer behind the curtain, making Doc Dreamy look good by sending him easier cases while sending Doc Duck the harder ones. When you don’t randomize, you can’t tell the difference between “Doc Dreamy is a better surgeon” and “Doc Dreamy got lucky with his patient assignment.” On any graph or in any headline, look for the common-cause confounder that is unaccounted for.</p>
 <p>Randomization is an excellent defense against this kind of confounding. Flip a coin, assign patients randomly, and suddenly the puppeteer loses control. Now you can actually see who the better surgeon is. And the surprise is that it’s the one who doesn’t look the part. The data wasn’t lying; it was just answering a different question than you thought you were asking.</p>
 <p>If you can’t randomize, and that’s most of the time, you stratify. Look within groups of similar patient severity. Compare apples to apples, not apples to oranges. It’s more work, and it’s less satisfying than a clean randomized trial, but it’s better than being fooled by confounding.</p>
 <p>The take-home lesson: The world is messy, and the numbers will mislead you if you let them. But if you understand the structure of the problem, if you draw the DAG and think about what causes what, you can defend yourself against being fooled. Randomization when you can, stratification when you can’t. The tools are simple. The hard part is remembering to use them.</p>
-</section>
-<section id="professional-presentation-guidelines" class="level2">
-<h2 class="anchored" data-anchor-id="professional-presentation-guidelines">Professional Presentation Guidelines</h2>
-<ul>
-<li><strong>Clear narrative:</strong> Your figures should tell the story described in the text</li>
-<li><strong>Consistent styling:</strong> All three figures should use the same color scheme and styling approach</li>
-<li><strong>Colorblind-friendly:</strong> Use the specified colors (#4E79A7 for Doc Dreamy, #E15759 for Doc Duck)</li>
-<li><strong>Professional quality:</strong> Clear labels, appropriate fonts, grid lines, legends</li>
-<li><strong>Match the narrative:</strong> Your figures should illustrate the points made in the text about confounding, randomization, and stratification</li>
-</ul>
-</section>
-<section id="submission-checklist" class="level2">
-<h2 class="anchored" data-anchor-id="submission-checklist">Submission Checklist ✅</h2>
-<p><strong>For 85% (Base Grade):</strong></p>
-<ul class="task-list">
-<li><label><input type="checkbox">Fork the <code>confounderChallenge</code> repository</label></li>
-<li><label><input type="checkbox">Clone locally and open in Cursor</label></li>
-<li><label><input type="checkbox">Recover all three figures (Tasks 1-3)</label></li>
-<li><label><input type="checkbox">Ensure figures match the narrative descriptions</label></li>
-<li><label><input type="checkbox">Render to HTML (<code>quarto render</code> or Render button)</label></li>
-<li><label><input type="checkbox">Verify all figures render correctly</label></li>
-<li><label><input type="checkbox">Push HTML to your repo and enable GitHub Pages</label></li>
-<li><label><input type="checkbox">Share your site: <code>https://[your-username].github.io/confounderChallenge/</code></label></li>
-</ul>
-<p><strong>For Final 15% (Bonus - 100% Total):</strong></p>
-<ul class="task-list">
-<li><label><input type="checkbox">Remove all challenge-related comments from code (no “TODO”, “Challenge Task”, “Recover Figure”)</label></li>
-<li><label><input type="checkbox">Transform document title/subtitle to “Using Randomization &amp; Stratification to Overcome A Common Cause Confounder”</label></li>
-<li><label><input type="checkbox">Remove challenge framing sections (challenge callout, submission checklist, tips)</label></li>
-<li><label><input type="checkbox">Polish the document to read like a complete, professional report</label></li>
-<li><label><input type="checkbox">Ensure the narrative flows naturally without challenge references</label></li>
-</ul>
-</section>
-<section id="tips" class="level2">
-<h2 class="anchored" data-anchor-id="tips">Tips</h2>
-<ul>
-<li>Read the narrative carefully—it contains hints about what each figure should show</li>
-<li>Use the statistical results mentioned in the text to verify your figures are correct</li>
-<li>Keep styling consistent across all three figures</li>
-<li>Test with both R and Python code chunks if you want to show versatility</li>
-<li>Set random seeds if you’re doing any additional analysis for reproducibility</li>
-</ul>
 
 </section>
 
