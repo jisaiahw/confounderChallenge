@@ -185,7 +185,7 @@ ggplot(patients_randomized_df, aes(x = patient, y = post_surgical_score,
     labels = c("Doc Dreamy" = "Doc Dreamy (○)", "Doc Duck" = "Doc Duck (△)")
   ) +
   labs(
-    title = "Post-Surgical Symptom Score by Patient and Doctor (Randomized Assignment)",
+    title = "Post-Surgical Symptom Score by Patient and Doctor\n(Randomized Assignment)",
     x = "Patient Number",
     y = "Post-Surgical Symptom Score (Lower is Better)",
     color = "Doctor",
@@ -193,7 +193,8 @@ ggplot(patients_randomized_df, aes(x = patient, y = post_surgical_score,
   ) +
   theme_minimal(base_size = 12) +
   theme(
-    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5, margin = margin(b = 10)),
+    plot.margin = margin(t = 20, r = 10, b = 10, l = 10),
     axis.title = element_text(size = 11, face = "bold"),
     axis.text = element_text(size = 10),
     legend.position = "bottom",
